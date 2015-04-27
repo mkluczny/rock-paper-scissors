@@ -9,17 +9,17 @@ public class OptionTest {
 
     @Test
     public void shouldMapUserOptionToRock() {
-        assertThat(userOption("R")).isEqualTo(ROCK);
+        assertThat(userOption(ROCK.getAbbr())).isEqualTo(ROCK);
     }
 
     @Test
     public void shouldMapUserOptionToScissors() {
-        assertThat(userOption("S")).isEqualTo(SCISSORS);
+        assertThat(userOption(SCISSORS.getAbbr())).isEqualTo(SCISSORS);
     }
 
     @Test
     public void shouldMapUserOptionToPaper() {
-        assertThat(userOption("P")).isEqualTo(PAPER);
+        assertThat(userOption(PAPER.getAbbr())).isEqualTo(PAPER);
     }
 
     @Test(expected = IllegalArgumentException.class)

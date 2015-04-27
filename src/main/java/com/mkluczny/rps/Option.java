@@ -8,9 +8,19 @@ import static java.util.Collections.unmodifiableList;
 
 public enum Option {
 
-    ROCK,
-    PAPER,
-    SCISSORS;
+    ROCK("R"),
+    PAPER("P"),
+    SCISSORS("S");
+
+    private final String abbr;
+
+    Option(final String abbr) {
+        this.abbr = abbr;
+    }
+
+    public String getAbbr() {
+        return this.abbr;
+    }
 
     private static final List<Option> VALUES    = unmodifiableList(asList(values()));
     private static final int SIZE               = VALUES.size();
@@ -21,11 +31,19 @@ public enum Option {
     }
 
     public static Option userOption(String abbr) {
-        switch (abbr) {
-            case "R": return ROCK;
-            case "P": return PAPER;
-            case "S": return SCISSORS;
-            default: throw new IllegalArgumentException(String.valueOf(abbr));
+
+        if (ROCK.getAbbr().equals(abbr)) {
+            return ROCK;
         }
+
+        if (PAPER.getAbbr().equals(abbr)) {
+            return PAPER;
+        }
+
+        if (SCISSORS.getAbbr().equals(abbr)) {
+            return SCISSORS;
+        }
+
+        throw new IllegalArgumentException(String.valueOf(abbr));
     }
 }

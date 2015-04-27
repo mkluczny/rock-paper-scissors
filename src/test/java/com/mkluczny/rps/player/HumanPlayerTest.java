@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 
+import static com.mkluczny.rps.Option.SCISSORS;
 import static org.fest.assertions.Assertions.assertThat;
 
 public class HumanPlayerTest {
@@ -26,25 +27,25 @@ public class HumanPlayerTest {
     @Test
     public void shouldReturnUserSelectedOption() throws Exception {
         // when
-        mockUserInput("S");
+        mockUserInput(SCISSORS.getAbbr());
 
         // when
         final Option option = player.call();
 
         // then
-        assertThat(option).isEqualTo(Option.SCISSORS);
+        assertThat(option).isEqualTo(SCISSORS);
     }
 
     @Test
     public void shouldReturnUserSelectedOptionIfLowerCase() throws Exception {
         // when
-        mockUserInput("s");
+        mockUserInput(SCISSORS.getAbbr().toLowerCase());
 
         // when
         final Option option = player.call();
 
         // then
-        assertThat(option).isEqualTo(Option.SCISSORS);
+        assertThat(option).isEqualTo(SCISSORS);
     }
 
     /*
