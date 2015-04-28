@@ -16,7 +16,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class GameTest {
 
     @Spy
-    private Game game = new Game();
+    private Game game = Game.newGame();
 
     @Mock
     private RoundManager roundManager;

@@ -13,7 +13,7 @@ public class Game {
     private RoundManager    roundManager;
     private UserInput       userInput;
 
-    public Game() {
+    private Game() {
         this.roundManager   = new RoundManager();
         this.userInput      = new UserInput();
     }
@@ -42,6 +42,14 @@ public class Game {
             }
         }
     }
+
+    public static Game newGame() {
+        return new Game();
+    }
+
+    /*
+     *  Private
+     */
 
     private void printInvalidActionSelected() {
         System.out.println("Invalid action selected.");

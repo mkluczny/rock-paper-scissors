@@ -12,8 +12,6 @@ import static java.util.concurrent.Executors.newFixedThreadPool;
 
 public class RoundManager {
 
-    private final ExecutorService executor = newFixedThreadPool(2);
-
     private Judge judge;
 
     public RoundManager() {
@@ -58,10 +56,15 @@ public class RoundManager {
      */
 
     private void waitForFigures(final Player player1, final Player player2) throws ExecutionException, InterruptedException {
+        final ExecutorService executor  = newFixedThreadPool(2);
+
         final Future<Figure> player1Bet = executor.submit(player1);
         final Future<Figure> player2Bet = executor.submit(player2);
+
         player1Bet.get();
         player2Bet.get();
+
+        executor.shutdown();
 
         printFigures(player1, player2);
     }

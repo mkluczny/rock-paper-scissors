@@ -7,7 +7,6 @@ import java.util.concurrent.ExecutionException;
 public class RockPaperScissors {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        new Game().play();
-        System.exit(0);
+        Game.newGame().play();
     }
 }
