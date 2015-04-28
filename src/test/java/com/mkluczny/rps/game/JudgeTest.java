@@ -1,9 +1,9 @@
-package com.mkluczny.rps;
+package com.mkluczny.rps.game;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.mkluczny.rps.Option.*;
+import static com.mkluczny.rps.input.Figure.*;
 import static org.fest.assertions.Assertions.assertThat;
 
 public class JudgeTest {
