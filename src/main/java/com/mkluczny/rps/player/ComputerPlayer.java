@@ -1,11 +1,17 @@
 package com.mkluczny.rps.player;
 
-import com.mkluczny.rps.Option;
+import com.mkluczny.rps.input.Figure;
 
 public class ComputerPlayer extends Player {
 
     @Override
-    public Option call() throws Exception {
-        return Option.random();
+    public Figure call() throws Exception {
+        setFigure(Figure.random());
+        return getFigure();
+    }
+
+    @Override
+    public String type() {
+        return "Computer";
     }
 }

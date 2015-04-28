@@ -1,6 +1,6 @@
 package com.mkluczny.rps.player;
 
-import com.mkluczny.rps.Option;
+import com.mkluczny.rps.input.Figure;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,11 +16,17 @@ public class ComputerPlayerTest {
     }
 
     @Test
-    public void shouldReturnRandomlySelectedOption() throws Exception {
+    public void shouldReturnRandomlySelectedFigure() throws Exception {
         // when
-        final Option option = player.call();
+        final Figure figure = player.call();
 
         // then
-        assertThat(option).isInstanceOf(Option.class);
+        assertThat(figure).isInstanceOf(Figure.class);
+    }
+
+    @Test
+    public void shouldReturnComputerType() throws Exception {
+        // when/then
+        assertThat(player.type()).isEqualTo("Computer");
     }
 }
