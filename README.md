@@ -5,6 +5,11 @@ Allowed modes:
 * Computer vs Computer
 * Computer vs Human
 
+### Requirements
+
+* Java 1.8
+* Maven 3
+
 ### Installation & Running
 
 ```
