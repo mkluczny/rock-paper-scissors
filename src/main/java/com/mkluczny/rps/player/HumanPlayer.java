@@ -1,22 +1,38 @@
 package com.mkluczny.rps.player;
 
-import com.mkluczny.rps.Option;
-
-import java.util.Scanner;
-
-import static com.mkluczny.rps.Option.userOption;
+import com.mkluczny.rps.input.Figure;
+import com.mkluczny.rps.input.UserInput;
 
 public class HumanPlayer extends Player {
 
+    private UserInput userInput;
+
+    public HumanPlayer() {
+        this.userInput = new UserInput();
+    }
+
     @Override
-    public Option call() throws Exception {
+    public Figure call() throws Exception {
         while(true) {
             try {
-                System.out.println(("[R = Rock, P = Paper, S = Scissors]:"));
-                return userOption(new Scanner(System.in).nextLine().toUpperCase());
+                setFigure(userInput.readFigure());
+                return getFigure();
             } catch (Exception e) {
-                System.out.println("Invalid option, please try again.");
+                System.out.println("Invalid figure, please try again...");
             }
         }
+    }
+
+    @Override
+    public String type() {
+        return "Human";
+    }
+
+    /*
+     *  Setters
+     */
+
+    public void setUserInput(UserInput userInput) {
+        this.userInput = userInput;
     }
 }

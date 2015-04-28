@@ -1,58 +1,57 @@
 package com.mkluczny.rps.player;
 
-import com.mkluczny.rps.Option;
-import org.junit.After;
+import com.mkluczny.rps.input.Figure;
+import com.mkluczny.rps.input.UserInput;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mock;
 
-import java.io.ByteArrayInputStream;
-
-import static com.mkluczny.rps.Option.SCISSORS;
+import static com.mkluczny.rps.input.Figure.SCISSORS;
 import static org.fest.assertions.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 public class HumanPlayerTest {
+
+    @Mock
+    private UserInput userInput;
 
     private HumanPlayer player;
 
     @Before
     public void setUp() {
+        initMocks(this);
         player = new HumanPlayer();
-    }
-
-    @After
-    public void tearDown() {
-        System.setIn(System.in);
+        player.setUserInput(userInput);
     }
 
     @Test
-    public void shouldReturnUserSelectedOption() throws Exception {
-        // when
-        mockUserInput(SCISSORS.getAbbr());
+    public void shouldReturnUserSelectedFigure() throws Exception {
+        // given
+        when(userInput.readFigure()).thenReturn(SCISSORS);
 
         // when
-        final Option option = player.call();
+        final Figure figure = player.call();
 
         // then
-        assertThat(option).isEqualTo(SCISSORS);
+        assertThat(figure).isEqualTo(SCISSORS);
     }
 
     @Test
-    public void shouldReturnUserSelectedOptionIfLowerCase() throws Exception {
-        // when
-        mockUserInput(SCISSORS.getAbbr().toLowerCase());
+    public void shouldRepeatReadingUsersFigureIfUserInputInvalid() throws Exception {
+        // given
+        when(userInput.readFigure()).thenThrow(new RuntimeException()).thenReturn(SCISSORS);
 
         // when
-        final Option option = player.call();
+        final Figure figure = player.call();
 
         // then
-        assertThat(option).isEqualTo(SCISSORS);
+        assertThat(figure).isEqualTo(SCISSORS);
     }
 
-    /*
-        Private
-     */
-
-    private void mockUserInput(final String input) {
-        System.setIn(new ByteArrayInputStream(input.getBytes()));
+    @Test
+    public void shouldReturnHumanType() throws Exception {
+        // when/then
+        assertThat(player.type()).isEqualTo("Human");
     }
 }
